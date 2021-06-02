@@ -1,0 +1,36 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Aplikacja wyszukiwania piłkarzy{% endblock %}
+
+{% block section %}
+    <div class="w-100">
+        <h2>Dodawanie piłkarzy</h2>
+        <p>Dodaj piłkarzy za pomoca pliku CSV. Plik powinien mieć następującą strukturę kolumn:</p>
+        <ul>
+            <li>Player</li>
+            <li>POSITION</li>
+            <li>AGE</li>
+            <li>GOALS</li>
+            <li>ASSISTS</li>
+            <li>DUELS WON %</li>
+            <li>CLEAR P90</li>
+            <li>ERR GOAL</li>
+            <li>TOUCHES P90</li>
+            <li>PASS COMP %</li>
+            <li>B CHANCES</li>
+            <li>DRIBBLES P90</li>
+            <li>CROSSES P90</li>
+            <li>CLEAN</li>
+            <li>SAVES P90</li>
+            <li>GOAL CON P90</li>
+            <li>PEN SAVES</li>
+            <li>Shot acc %</li>
+            <li>HEIGHT</li>
+            <li>TOP SPEED</li>
+        </ul>
+        {{ form_start(form) }}
+            {{ form_row(form.file) }}
+            {{ form_row(form.save) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

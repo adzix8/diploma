@@ -1,0 +1,33 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Panel administratora{% endblock %}
+
+{% block section %}
+    <div class="w-100">
+        <h2>Lista piłkarzy do usunięcia</h2>
+    </div>
+    <div class="w-100">
+        <div class="overflow-x--auto">
+            <table>
+                <thead>
+                <tr>
+                    <th>Imię i nazwisko</th>
+                    <th>Wiek</th>
+                    <th>Statystyki</th>
+                    <th>Akcja</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                <tr>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.age }}</td>
+                    <td><a class="link" href="{{ path('show_player', {'id': player.id}) }}">Zobacz</a></td>
+                    <td><a class="link important" href="{{ path('delete', {'id': player.id}) }}">Usuń</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

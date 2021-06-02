@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aplikacja wyszukiwania piłkarzy{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('admin') }}" class="btn--icon" title="Przejdź do panelu admina">
+            <img src="{{ asset('img/settings.png') }}" alt="Ikona ustawienia">
+        </a>
+    {% endif %}
+    {% if player %}
+    <h1 class="title w-100">Metryka i statystyki piłkarza</h1>
+    <div class="w-100">
+        <h2>{{ player.name }}</h2>
+        <p>Pozycje: <strong></strong></p>
+        <p>Wiek: <strong>{{ player.age }}</strong></p>
+        <p>Wzrost: <strong>{{ player.height }}</strong></p>
+        <p>Maksymalna szybkość: <strong>{{ player.topSpeed|number_format(2) }}</strong></p>
+        <p>
+            Pozycje:
+            <strong>
+            {% set array = [] %}
+            {% set goalkeeper = false %}
+            {% for index, position in player.positions %}
+                {% if position.position.name not in array %}
+                    {% if index > 0 %} | {% endif %}
+                    {{ position.position.name }}
+                    {% if position.position.name == 'Bramkarz' %}
+                        {% set goalkeeper = true %}
+                    {% endif %}
+                    {% set array = array|merge([position.position.name]) %}
+                {% endif %}
+            {% endfor %}
+            </strong>
+        </p>
+        <div class="overflow-x--auto">
+            <table>
+                <thead>
+                <tr>
+                    <th>Sezon</th>
+                {% if not goalkeeper %}
+                    <th>Gole</th>
+                    <th>Asysty</th>
+                    <th title="Procent wygranych pojedynków">Pojedynki wygrane</th>
+                    <th title="Ilość przejęć piłki na mecz">Przejęcia piłki</th>
+                    <th title="Błędy przy straconych golach">Błędy</th>
+                    <th title="Procent dokładnych podań">Dokładne podania</th>
+                    <th title="Ilość dryblingów na mecz">Dryblingi</th>
+                    <th title="Ilość dośrodkowań na mecz">Dośrodkowania</th>
+                    <th title="Ilość wykreowanych szans do zdobycia gola">Wykreowane szanse</th>
+                    <th title="Ilość dotknięć piłki na mecz">Dotknięcia</th>
+                    <th title="Procent celnych strzałów">Celne strzały</th>
+                {% endif %}
+                {% if goalkeeper %}
+                    <th title="Ilość obron na mecz">Obrony</th>
+                    <th title="Ilość czystych kont bramkowych">Czyste konta</th>
+                    <th title="Ilość straconych goli">Stracone gole</th>
+                    <th title="Ilość obronionych karnych">Obronione karne</th>
+                    <th title="Błędy przy straconych golach">Błędy</th>
+                {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for statistic in player.statistics %}
+                    <tr>
+                        <td>2019/2020</td>
+                    {% if not goalkeeper %}
+                        <td>{{ statistic.goals }}</td>
+                        <td>{{ statistic.assists }}</td>
+                        <td>{{ statistic.dualsWon }} %</td>
+                        <td>{{ statistic.clearances }}</td>
+                        <td>{{ statistic.errors }}</td>
+                        <td>{{ statistic.passesCompleted }} %</td>
+                        <td>{{ statistic.dribbles }}</td>
+                        <td>{{ statistic.crosses }}</td>
+                        <td>{{ statistic.chances }}</td>
+                        <td>{{ statistic.touches }}</td>
+                        <td>{{ statistic.shootAccuracy }} %</td>
+                    {% endif %}
+                    {% if goalkeeper %}
+                        <td>{{ statistic.saves }}</td>
+                        <td>{{ statistic.cleanSheets }}</td>
+                        <td>{{ statistic.goalsConceded }}</td>
+                        <td>{{ statistic.penaltySaves }}</td>
+                        <td>{{ statistic.errors }}</td>
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

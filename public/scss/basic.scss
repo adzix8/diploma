@@ -1,0 +1,397 @@
+/****** Basic styles  ******/
+@import 'vars';
+
+*,
+::after,
+::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body,
+p,
+ul,
+input {
+  font: 16px/20px Helvetica, sans-serif;
+}
+
+body {
+  color: $text-color;
+  background: url('../img/bg.jpg') $background-color no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: disc;
+  padding-left: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+span {
+  font: inherit;
+}
+
+strong {
+  font-weight: bold;
+}
+
+main {
+  background: $background-color-transparent;
+  height: calc(100vh - 2rem);
+  margin: 1rem auto;
+  padding: 1rem;
+  overflow-y: auto;
+  position: relative;
+  box-shadow:
+    2px 2px 10px 5px rgba(0,0,0,.25),
+    -2px 2px 10px 5px rgba(0,0,0,.25),
+    2px -2px 10px 5px rgba(0,0,0,.25),
+    -2px -2px 10px 5px rgba(0,0,0,.25);
+
+  @media #{$md-min} {
+    height: calc(100vh - 4rem);
+    margin: 2rem auto;
+    padding: 4rem 2rem;
+
+    &::-webkit-scrollbar-track
+    {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      background-color:  $primary-color;
+    }
+
+    &::-webkit-scrollbar
+    {
+      width: .5rem;
+      background-color:  $primary-color;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #90a0a4;
+    }
+  }
+}
+
+button {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+a,
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+  background-color: $primary-color;
+}
+
+thead {
+  border-top: 2px solid $text-color;
+  border-bottom: 2px solid $text-color;
+}
+
+th, td {
+  padding: .5rem;
+}
+
+th {
+  font-weight: 700;
+}
+
+form {
+  margin: 2rem 0;
+}
+
+label {
+  margin-right: 1rem;
+
+  @media #{$sm-max} {
+    margin-bottom: .5rem;
+    display: block;
+  }
+}
+
+input {
+  margin-bottom: 1rem;
+}
+
+select {
+  background-color: transparent;
+  border: 2px solid $text-color;
+  border-radius: 2rem;
+  padding: .5rem 2rem;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  width: auto;
+  height: 1rem;
+  margin-right: $margin-1;
+}
+
+.icon--lg {
+  width: auto;
+  height: 1.5rem;
+  margin-right: $margin-1 * 1.5;
+}
+
+.with-icon {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.btn--block {
+  margin: 0 auto;
+  display: block;
+}
+
+.link {
+  color: $text-color;
+  text-decoration: none;
+  -webkit-transition: color .4s ease-in-out;
+  transition: color .4s ease-in-out;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+.text--right {
+  text-align: right;
+}
+
+.text--light {
+  color: $secondary-color;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.text--center--sm {
+  @media #{$sm-max} {
+    text-align: center;
+  }
+}
+
+.text--lg {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+.p-relative {
+  position: relative;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.m-1 {
+  margin: $margin-1;
+}
+
+.mt-1 {
+  margin-top: $margin-1;
+}
+
+.mr-1 {
+  margin-right: $margin-1;
+}
+
+.mb-1 {
+  margin-bottom: $margin-1;
+}
+
+.ml-1 {
+  margin-right: $margin-1;
+}
+
+.btn--icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+
+  @media #{$md-min} {
+    top: 2rem;
+    right: 2rem;
+  }
+
+  svg, img {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.title {
+  position: relative;
+  margin-bottom: 3rem;
+
+  &::before {
+    content: '';
+    background-color: $text-color;
+    width: 4rem;
+    height: 2px;
+    position: absolute;
+    bottom: -1rem;
+    left: -2rem;
+  }
+}
+
+.btn {
+  color: $text-color;
+  border: 2px solid $text-color;
+  border-radius: 1rem;
+  font-size: 1rem;
+  padding: 2rem 5rem 2rem 2rem;
+  display: inline-block;
+  text-decoration: none;
+
+  &--sm {
+    padding: .5rem 2rem;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+
+    &:hover, &:focus {
+      color: $text-invert-color;
+      background-color: $text-color;
+    }
+  }
+
+  &--plus {
+    position: relative;
+
+    &::before, &::after {
+      content: '';
+      background-color: $text-color;
+      width: 1.5rem;
+      height: 1px;
+      position: absolute;
+      top: 2.5rem;
+      right: 2rem;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+
+  &--minus {
+    position: relative;
+
+    &::before {
+      content: '';
+      background-color: $text-color;
+      width: 1.5rem;
+      height: 1px;
+      position: absolute;
+      top: 2.5rem;
+      right: 2rem;
+    }
+  }
+
+  &--edit {
+    position: relative;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
+  }
+}
+
+.overflow-x--auto {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.criteria__container {
+  background-color: $primary-color;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1rem 0;
+}
+
+form[name='search_player'] {
+  margin-top: 0;
+}
+
+.none {
+  display: none;
+}
+
+.important, .warning {
+  color: $red;
+}
+
+.success {
+  color: #33802c;
+}
+
+.player__form {
+  label {
+    width: 10rem;
+    display: inline-block;
+  }
+
+  input {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid $text-color;
+    border-radius: 2rem;
+    padding: .5rem 2rem;
+    margin-bottom: 1rem;
+  }
+
+  @media #{$sm-max} {
+    label, input {
+      width: 100%;
+    }
+  }
+}

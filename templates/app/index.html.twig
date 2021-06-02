@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aplikacja wyszukiwania piłkarzy{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('admin') }}" class="btn--icon" title="Przejdź do panelu admina">
+            <img src="{{ asset('img/settings.png') }}" alt="Ikona ustawienia">
+        </a>
+    {% endif %}
+    <h1 class="title w-100">Aplikacja do oceny jakości piłkarzy</h1>
+    <div class="w-100 flex">
+        <div class="w-50">
+        {{ form_start(form) }}
+            {{ form_row(form.position) }}
+            <h2>Kryteria</h2>
+            <div class="criteria__container">
+                {{ form_row(form.age) }}
+                {{ form_row(form.height) }}
+                {{ form_row(form.speed) }}
+                {{ form_row(form.goals) }}
+                {{ form_row(form.assists) }}
+                {{ form_row(form.passes) }}
+                {{ form_row(form.dualsWon) }}
+                {{ form_row(form.touches) }}
+                {{ form_row(form.crosses) }}
+                {{ form_row(form.dribbles) }}
+                {{ form_row(form.chances) }}
+                {{ form_row(form.clearances) }}
+                {{ form_row(form.errors) }}
+                {{ form_row(form.shoots) }}
+                {{ form_row(form.saves) }}
+                {{ form_row(form.penaltySaves) }}
+                {{ form_row(form.goalsConceded) }}
+                {{ form_row(form.cleanSheets) }}
+            </div>
+            {{ form_row(form.save) }}
+        {{ form_end(form) }}
+        </div>
+
+        {% if players %}
+            <div class="w-50 overflow-x--auto">
+                <h2>Ranking piłkarzy</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Piłkarz</th>
+                        <th>Wiek</th>
+                        <th>Statystyki</th>
+                        <th>Ranking</th>
+                        <th>Wynik</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for rank, player in players|slice(0, 20) %}
+                        <tr>
+                            <td>{{ player.name }}</a></td>
+                            <td>{{ player.age }}</td>
+                            <td><a href="{{ path('show_player', {'id': player.id}) }}" class="link">zobacz</a></td>
+                            <td>{{ rank+1 }}</td>
+                            <td>{{ player.score|number_format(4) }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/positions.js') }}"></script>
+{% endblock %}

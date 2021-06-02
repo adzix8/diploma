@@ -1,0 +1,31 @@
+index:
+    path: /
+    controller: App\Controller\AppController::index
+
+admin:
+    path: /admin
+    controller: App\Controller\AdminController::index
+
+show_player:
+    path: /player/{id}
+    controller: App\Controller\AppController::showPlayer
+
+add:
+    path: /admin/dodaj-pilkarzy
+    controller: App\Controller\AdminController::addPlayers
+
+edit_list:
+    path: /admin/edytuj-pilkarzy
+    controller: App\Controller\AdminController::editList
+
+delete_list:
+    path: /admin/usun-pilkarzy
+    controller: App\Controller\AdminController::deleteList
+
+edit:
+    path: /admin/edytuj/{id}
+    controller: App\Controller\AdminController::editPlayer
+
+delete:
+    path: /admin/usun/{id}
+    controller: App\Controller\AdminController::deletePlayer

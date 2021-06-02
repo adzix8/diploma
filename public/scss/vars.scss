@@ -1,0 +1,31 @@
+/****** Variables  ******/
+
+/* Breakpoints */
+$xs-max: '(max-width: 350px)';
+$sm-min: '(min-width: 576px)';
+$sm-max: '(max-width: 767px)';
+$md-min: '(min-width: 768px)';
+$md-max: '(max-width: 991px)';
+$lg-min: '(min-width: 992px)';
+$xl-min: '(min-width: 1200px)';
+
+/* Colors */
+$text-color: #000000;
+$text-invert-color: #ffffff;
+$primary-color: #f0f0f0;
+$primary-dark-color: #97a7c1;
+$secondary-color: #7485a2;
+$secondary-dark-color: #30476f;
+$background-color: #ffffff;
+$background-color-transparent: rgba(255, 255, 255, .97);
+$red: #ed4a01;
+
+/* Margin & padding */
+$margin-1: .5rem;
+$margin-2: 1rem;
+$margin-3: 2rem;
+$margin-4: 4rem;
+$padding-1: .5rem;
+$padding-2: 1rem;
+$padding-3: 2rem;
+$padding-4: 4rem;

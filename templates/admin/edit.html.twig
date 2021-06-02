@@ -1,0 +1,17 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Aplikacja wyszukiwania piłkarzy{% endblock %}
+
+{% block section %}
+    <div class="w-100 player__form">
+        <h2>Edycja zawodnika {{ player.name }}</h2>
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/setFloatValue.js') }}"></script>
+{% endblock %}

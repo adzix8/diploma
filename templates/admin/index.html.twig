@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel administratora{% endblock %}
+
+{% block body %}
+    <a href="{{ path('index') }}" class="btn--icon" title="Przejdź do strony aplikacji">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="199 119 28 26" width="24" height="22"><defs><path d="M224 132L212 120L200 132" id="c7Z5b61SC"></path><path d="M219.74 130L220 142L214 142L214 136L210 136L210 142L204 142L204 130" id="a2MMU9J0Fp"></path></defs><g><g><g><use xlink:href="#c7Z5b61SC" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="1" stroke-opacity="1"></use></g></g><g><g><use xlink:href="#a2MMU9J0Fp" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="1" stroke-opacity="1"></use></g></g></g></svg>    </a>
+    <h1 class="title w-100">Panel admina</h1>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="w-100 {{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% block section %}
+        <div class="w-25">
+            <a href="{{ path('add') }}" class="btn btn--plus">Dodaj piłkarzy</a>
+        </div>
+        <div class="w-25">
+            <a href="{{ path('delete_list') }}" class="btn btn--minus">Usuń piłkarza</a>
+        </div>
+        <div class="w-25">
+            <a href="{{ path('edit_list') }}" class="btn btn--edit">Edytuj piłkarza
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="159 239 28 28" width="24" height="24"><defs><path d="M166 262L184 244L180 240L162 258L160 264L166 262Z" id="b56ON0v1Bc"></path><path d="M166 262L162 258" id="e3Sn8JUHcJ"></path><path d="M182 246L178 242" id="b6t1bVFrjU"></path></defs><g><g><g><use xlink:href="#b56ON0v1Bc" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="1" stroke-opacity="1"></use></g></g><g><g><use xlink:href="#e3Sn8JUHcJ" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="1" stroke-opacity="1"></use></g></g><g><g><use xlink:href="#b6t1bVFrjU" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="1" stroke-opacity="1"></use></g></g></g></svg>
+            </a>
+        </div>
+    {% endblock %}
+{% endblock %}
