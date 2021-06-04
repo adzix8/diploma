@@ -40,44 +40,37 @@ class AppController extends AbstractController
             $filteredPlayers = array_values($filteredPlayers);
             $criteria = [];
             $weights = [];
-            $types = [];
             switch ($data['position'])
             {
                 case 1:
                     $criteria = ['age', 'height', 'saves', 'penaltySaves', 'goalsConceded', 'cleanSheets', 'errors'];
                     $weights = [$data['age'], $data['height'], $data['saves'], $data['penaltySaves'],
                         $data['goalsConceded'], $data['cleanSheets'], $data['errors']];
-                    $types = [-1, 1, 1, 1, -1, 1, -1];
                     break;
                 case 2:
                     $criteria = ['age', 'height', 'speed', 'goals', 'dualsWon', 'clearances', 'errors', 'passes'];
                     $weights = [$data['age'], $data['height'], $data['speed'], $data['goals'],
                         $data['dualsWon'], $data['clearances'], $data['errors'], $data['passes']];
-                    $types = [-1, 1, 1, 1, 1, 1, -1, 1];
                     break;
                 case 3:
                     $criteria = ['age', 'speed', 'goals', 'assists', 'dualsWon', 'clearances', 'errors', 'passes', 'crosses'];
                     $weights = [$data['age'], $data['speed'], $data['goals'], $data['assists'],
                         $data['dualsWon'], $data['clearances'], $data['errors'], $data['passes'], $data['crosses']];
-                    $types = [-1, 1, 1, 1, 1, 1, -1, 1, 1];
                     break;
                 case 4:
                     $criteria = ['age', 'speed', 'goals', 'assists', 'dualsWon', 'clearances', 'passes', 'crosses', 'touches', 'chances'];
                     $weights = [$data['age'], $data['speed'], $data['goals'], $data['assists'], $data['dualsWon'],
                         $data['clearances'], $data['passes'], $data['crosses'], $data['touches'], $data['chances']];
-                    $types = [-1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
                     break;
                 case 5:
                     $criteria = ['age', 'speed', 'goals', 'assists', 'dualsWon', 'dribbles', 'passes', 'crosses', 'touches', 'chances'];
                     $weights = [$data['age'], $data['speed'], $data['goals'], $data['assists'], $data['dualsWon'],
                         $data['dribbles'], $data['passes'], $data['crosses'], $data['touches'], $data['chances']];
-                    $types = [-1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
                     break;
                 case 6:
                     $criteria = ['age', 'height', 'speed', 'goals', 'assists', 'dualsWon', 'passes', 'shoots', 'touches', 'chances'];
                     $weights = [$data['age'], $data['height'], $data['speed'], $data['goals'], $data['assists'],
                         $data['dualsWon'], $data['passes'], $data['shoots'], $data['touches'], $data['chances']];
-                    $types = [-1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
                     break;
             }
             $sumWeights = array_sum($weights);
@@ -85,7 +78,7 @@ class AppController extends AbstractController
             {
                 $weights[$key] = $weight/$sumWeights;
             }
-            $scores = $this->TOPSIS($filteredPlayers, $criteria, $weights, $types);
+            $scores = $this->TOPSIS($filteredPlayers, $criteria, $weights);
 
             foreach ($filteredPlayers as $index => $player)
             {
@@ -124,7 +117,7 @@ class AppController extends AbstractController
      * @param $types
      * @return array
      */
-    private function TOPSIS($players, $criteria, $weights, $types): array
+    private function TOPSIS($players, $criteria, $weights): array
     {
         $matrix = [[[]]];
 
